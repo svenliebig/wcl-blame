@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { getClient } from "./client";
 import { initRateLimit } from "./routes/rate_limit_data";
 

@@ -1,0 +1,25 @@
+{
+	"create-client": {
+		"prefix": "cc",
+		"body": [
+			"import gql from \"gql-query-builder\";",
+			"import { WclCLient } from \"../../client\";",
+			"import { ${TM_FILENAME_BASE/(.*)/${1:/capitalize}/} } from \"../../gql/graphql\";",
+			"",
+			"export const ${TM_FILENAME_BASE/(.*)/${1:/camelcase}/}Query = (id: number) =>",
+			"  gql.query({",
+			"    operation: \"${TM_FILENAME_BASE/(.*)/${1:/camelcase}/}\",",
+			"    fields: [$1],",
+			"    variables: { $2 },",
+			"  });",
+			"",
+			"export function init${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}(client: WclCLient) {",
+			"  return async (...args: ReturnType<typeof ${TM_FILENAME_BASE/(.*)/${1:/camelcase}/}Query>) => {",
+			"    return await client.call<Pick<${TM_FILENAME_BASE/(.*)/${1:/capitalize}/}, \"$3\">>(",
+			"      ${TM_FILENAME_BASE/(.*)/${1:/camelcase}/}Query(...args)",
+			"    );",
+			"  };",
+			"}",
+		]
+	}
+}

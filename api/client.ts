@@ -1,18 +1,21 @@
+import fetch from "node-fetch";
+import { query } from "gql-query-builder";
+
 export interface WclCLient {
-  call<T>(query: any): Promise<T>;
+  call<T>(qry: ReturnType<typeof query>): Promise<T>;
 }
 
 export function getClient(token: string): WclCLient {
   return new Client(token);
 }
 
-class Client {
+class Client implements WclCLient {
   constructor(private token: string) {}
 
-  async call<T>(query: any): Promise<T> {
+  async call<T>(qry: ReturnType<typeof query>): Promise<T> {
     const res = await fetch("https://www.warcraftlogs.com/api/v2/client", {
       method: "POST",
-      body: JSON.stringify(query),
+      body: JSON.stringify(qry),
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${this.token}`,
@@ -21,14 +24,14 @@ class Client {
 
     if (!res.ok) {
       throw new Error(
-        `Could not call query: ${query} - ${res.status} ${res.statusText}`
+        `Could not call query: ${qry} - ${res.status} ${res.statusText}`
       );
     }
 
     try {
-      return await res.json();
+      return ((await res.json()) as any).data as T;
     } catch (e) {
-      throw new Error(`Could not parse response of query: ${query} ${e}`);
+      throw new Error(`Could not parse response of query: ${qry} ${e}`);
     }
   }
 }
