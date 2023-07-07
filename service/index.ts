@@ -7,6 +7,6 @@ const client = createClient({
   token: process.env.WCL_TOKEN as string,
 });
 
-client.getRateLimit().then((data) => {
-  console.log(data);
-});
+const data = await client.getRateLimit();
+
+console.log(data);

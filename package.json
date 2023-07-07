@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "workspaces": [
     "api",
-    "service"
+    "service",
+    "discord-bot"
   ],
   "scripts": {
     "test": "vitest"
