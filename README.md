@@ -3,12 +3,12 @@
 ## requirements
 
 - node v16.18.0
-- pnpm v8.6.6
+- npm v8.19.2
 
 ## install dependencies
 
 ```bash
-pnpm install
+npm install
 ```
 
 ## generate schema
@@ -16,10 +16,10 @@ pnpm install
 Use [get-graphql-schema](https://github.com/prisma-labs/get-graphql-schema) download the schema from Warcraftlogs.
 
 ```bash
-# install
+# install global cli tool get-graphql-schema
 npm install -g get-graphql-schema
 # execute
-get-graphql-schema https://www.warcraftlogs.com/api/v2/client -h "authorization=Bearer <TOKEN>" > schema.graphql
+get-graphql-schema https://www.warcraftlogs.com/api/v2/client -h "authorization=Bearer <TOKEN>" > ./api/schema.graphql
 # regenerate using codegem
-pnpm generate
+npm generate --workspace api
 ```

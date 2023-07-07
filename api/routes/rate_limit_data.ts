@@ -1,4 +1,4 @@
-import gql from "gql-query-builder";
+import * as gql from "gql-query-builder";
 import { RateLimitData } from "../gql/graphql";
 import { WclCLient } from "../client";
 
