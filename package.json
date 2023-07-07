@@ -1,18 +1,24 @@
 {
   "name": "wcl-blame",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "workspaces": [
+    "api",
+    "service"
+  ],
   "scripts": {
     "test": "vitest"
   },
+  "description": "",
   "keywords": [],
-  "author": "",
+  "author": "Sven Liebig <liebigsv@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.4.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vitest": "^0.33.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }

@@ -13,6 +13,8 @@ class Client implements WclCLient {
   constructor(private token: string) {}
 
   async call<T>(qry: ReturnType<typeof query>): Promise<T> {
+    console.log("hello", qry.query);
+
     const res = await fetch("https://www.warcraftlogs.com/api/v2/client", {
       method: "POST",
       body: JSON.stringify(qry),
@@ -21,6 +23,8 @@ class Client implements WclCLient {
         authorization: `Bearer ${this.token}`,
       },
     });
+
+    console.log("hello");
 
     if (!res.ok) {
       throw new Error(
