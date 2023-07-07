@@ -1,4 +1,4 @@
-import gql from "gql-query-builder";
+import * as gql from "gql-query-builder";
 import { WclCLient } from "../../client";
 import { Encounter, Query } from "../../gql/graphql";
 
