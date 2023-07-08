@@ -23,15 +23,21 @@ class Client implements WclCLient {
     });
 
     if (!res.ok) {
-      throw new Error(
-        `Could not call query: ${qry} - ${res.status} ${res.statusText}`
-      );
+      throw new Error(`Could not call query: ${qry} - ${res.status} ${res.statusText}`);
     }
 
+    let data: any;
     try {
-      return ((await res.json()) as any).data as T;
+      data = await res.json();
     } catch (e) {
       throw new Error(`Could not parse response of query: ${qry} ${e}`);
     }
+
+    if (data.errors) {
+      console.error("errors", data.errors);
+      throw new Error(`Could not call query: ${qry} - ${data.errors}`);
+    }
+
+    return data.data as T;
   }
 }

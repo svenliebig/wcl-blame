@@ -1,6 +1,7 @@
 import { getClient } from "./client";
 import { initRateLimit } from "./routes/rate_limit_data";
-import { initFights } from "./routes/reportData/report";
+import { initFights } from "./routes/reportData/report/fights";
+import { initEvents } from "./routes/reportData/report/event";
 import { initEncounter } from "./routes/worldData/encounter";
 
 type WclClientOptions = {
@@ -17,5 +18,6 @@ export function createClient(o: WclClientOptions) {
     getRateLimit: initRateLimit(client),
     getReportFights: initFights(client),
     getEncounter: initEncounter(client),
+    getReportEvents: initEvents(client),
   };
 }

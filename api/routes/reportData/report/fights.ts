@@ -1,6 +1,6 @@
 import * as gql from "gql-query-builder";
-import { WclCLient } from "../../client";
-import { ReportFight } from "../../gql/graphql";
+import { WclCLient } from "../../../client";
+import { ReportFight } from "../../../gql/graphql";
 
 export const fightsQuery = (code: string, fields: Array<keyof ReportFight>) =>
   gql.query({
