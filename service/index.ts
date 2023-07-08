@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 config({ path: "../.env/test" });
 
-import { createClient } from "wcl-blame-api";
+import { PlayerDetails, createClient } from "wcl-blame-api";
 import { EventDataType, HostilityType } from "wcl-blame-api/gql/graphql";
 
 const client = createClient({
@@ -26,7 +26,7 @@ const client = createClient({
     {
       attended: number;
       hitByWave: number;
-      player?: Awaited<ReturnType<typeof client.getReportPlayerDetails>>["dps"][number];
+      player?: PlayerDetails;
     }
   >();
   const fightIdByEncounter = new Map<number, Array<number>>();

@@ -9,6 +9,9 @@ type WclClientOptions = {
   token: string;
 };
 
+export { PlayerDetails } from "./routes/reportData/report/player_details";
+export { Event } from "./routes/reportData/report/event";
+
 /**
  * creates a client for the Warcraft Logs API.
  */

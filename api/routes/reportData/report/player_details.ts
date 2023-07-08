@@ -3,7 +3,7 @@ import { WclCLient } from "../../../client";
 import { ReportPlayerDetailsArgs } from "../../../gql/graphql";
 import { createTransform } from "../../../utils/createTransform";
 
-type PlayerDetails = {
+export type PlayerDetails = {
   name: string;
   id: number;
   guid: number;

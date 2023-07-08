@@ -1,7 +1,6 @@
 import { describe, expect, it, vitest } from "vitest";
 import { getClient } from "../../../../client";
 import { initPlayerDetails, playerDetailsQuery } from "../player_details";
-import { EventDataType, HostilityType } from "../../../../gql/graphql";
 
 const client = getClient(process.env.WCL_TOKEN as string);
 const fakeClient = getClient("fake token");

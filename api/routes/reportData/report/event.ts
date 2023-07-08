@@ -3,7 +3,7 @@ import { WclCLient } from "../../../client";
 import { ReportEventPaginator, ReportEventsArgs } from "../../../gql/graphql";
 import VariableOptions from "gql-query-builder/build/VariableOptions";
 
-type Event = {
+export type Event = {
   timestamp: number;
   type: "damage"; // do more later
   sourceID: number;
