@@ -2,13 +2,7 @@ import * as gql from "gql-query-builder";
 import { WclCLient } from "../../client";
 import { ReportFight } from "../../gql/graphql";
 
-const fightFields: Array<keyof ReportFight> = [
-  "id",
-  "fightPercentage",
-  "encounterID",
-];
-
-export const fightsQuery = (code: string) =>
+export const fightsQuery = (code: string, fields: Array<keyof ReportFight>) =>
   gql.query({
     operation: "reportData",
     fields: [
@@ -16,7 +10,7 @@ export const fightsQuery = (code: string) =>
         operation: "report",
         fields: [
           {
-            fights: fightFields,
+            fights: fields,
           },
         ],
         variables: { code },
@@ -24,21 +18,22 @@ export const fightsQuery = (code: string) =>
     ],
   });
 
-type FightResult = {
+type FightResult<T extends keyof ReportFight> = {
   reportData: {
     report: {
-      fights: ReportFight[];
+      fights: Array<Pick<ReportFight, T>>;
     };
   };
 };
 
-export function initFights(
-  client: WclCLient
-): (
-  id: string
-) => Promise<Array<Pick<ReportFight, (typeof fightFields)[number]>>> {
-  return async (id: string) => {
-    return (await client.call<FightResult>(fightsQuery(id))).reportData.report
-      .fights;
+const fightsFields = ["id", "fightPercentage", "encounterID"] satisfies Array<keyof ReportFight>;
+
+export function initFights(client: WclCLient) {
+  return async <T extends keyof ReportFight = (typeof fightsFields)[number]>(
+    id: string,
+    fields: Array<T> = fightsFields as Array<T>
+  ) => {
+    const query = fightsQuery(id, fields);
+    return (await client.call<FightResult<T>>(query)).reportData.report.fights;
   };
 }

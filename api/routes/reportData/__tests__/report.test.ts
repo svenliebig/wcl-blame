@@ -14,16 +14,15 @@ describe("fights", () => {
 
     const fights = await initFights(fakeClient)("asdf");
 
-    expect(fights).toEqual({
+    expect(fights[0]).toEqual({
       asdf: 123,
     });
 
-    expect(spy).toHaveBeenCalledWith(fightsQuery("asdf"));
+    expect(spy).toHaveBeenCalledWith(fightsQuery("asdf", ["id", "fightPercentage", "encounterID"]));
   });
 
-  it.only("expect api to be called", async () => {
-    const fights = await initFights(client)("wrq617zdyhGtT3An");
-
+  it("expect api to be called", async () => {
+    const fights = await initFights(client)("wrq617zdyhGtT3An", ["id"]);
     expect(fights).toHaveLength(26);
   });
 });
