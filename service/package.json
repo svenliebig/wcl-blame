@@ -2,13 +2,14 @@
   "name": "wcl-blame-service",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "dist/index.js",
   "module": "index.ts",
   "types": "dist/index.d.ts",
   "devDependencies": {},
   "scripts": {
+    "test": "vitest",
     "start": "ts-node --esm index.ts",
+    "start-run": "ts-node --esm run.ts",
     "build": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json"
   },
   "author": "",
