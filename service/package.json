@@ -1,11 +1,15 @@
 {
-  "name": "service",
+  "name": "wcl-blame-service",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "index.ts",
+  "types": "dist/index.d.ts",
   "devDependencies": {},
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node --esm index.ts",
+    "build": "tsc --project tsconfig.json && tsc --project tsconfig.cjs.json"
   },
   "author": "",
   "license": "ISC"

@@ -6,9 +6,10 @@ import { initEncounter } from "./routes/worldData/encounter";
 import { initPlayerDetails } from "./routes/reportData/report/player_details";
 
 type WclClientOptions = {
-  token: string;
+	token: string;
 };
 
+export { EventDataType, HostilityType, ReportFight } from "./gql/graphql";
 export { PlayerDetails } from "./routes/reportData/report/player_details";
 export { Event } from "./routes/reportData/report/event";
 
@@ -16,13 +17,13 @@ export { Event } from "./routes/reportData/report/event";
  * creates a client for the Warcraft Logs API.
  */
 export function createClient(o: WclClientOptions) {
-  const client = getClient(o.token);
+	const client = getClient(o.token);
 
-  return {
-    getRateLimit: initRateLimit(client),
-    getReportFights: initFights(client),
-    getEncounter: initEncounter(client),
-    getReportEvents: initEvents(client),
-    getReportPlayerDetails: initPlayerDetails(client),
-  };
+	return {
+		getRateLimit: initRateLimit(client),
+		getReportFights: initFights(client),
+		getEncounter: initEncounter(client),
+		getReportEvents: initEvents(client),
+		getReportPlayerDetails: initPlayerDetails(client),
+	};
 }

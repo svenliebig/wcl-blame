@@ -7,7 +7,8 @@
     "discord-bot"
   ],
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "build": "npm run build --workspace api && npm run build --workspace service"
   },
   "description": "",
   "keywords": [],
