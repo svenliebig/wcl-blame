@@ -59,11 +59,10 @@ export async function evaluateFail(token: string, fail: Fail, fights: Array<Pick
 		dataType: EventDataType.DamageTaken, // TODO: make this configurable
 		hostilityType: HostilityType.Friendlies, // TODO: make this configurable (maybe)
 		abilityID: fail.abilityID,
-		limit: 50,
+		limit: 500,
 		wipeCutoff: 2, // TODO: make this configurable (do we want this?)
 	});
 
-	console.log(`Found ${events.length} events for ${fail.name}`);
 	if (events.length === 300) {
 		console.warn("Event limit reached, some data might be missing");
 	}

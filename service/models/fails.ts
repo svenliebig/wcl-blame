@@ -18,7 +18,7 @@ ENCOUNTER_FAILS.set(ENCOUNTER_ID_RASHOK, [
 		encounterID: ENCOUNTER_ID_RASHOK,
 		abilityID: 403543,
 		type: "DamageTaken",
-		icon: ":lavawave:",
+		icon: "lava_wave",
 		name: "Lava Wave",
 	},
 ]);

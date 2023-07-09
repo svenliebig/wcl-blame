@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const { Client, Events, GatewayIntentBits, REST, Routes, Collection } = require('discord.js');
+const { Client, Events, GatewayIntentBits, Routes, Collection } = require('discord.js');
 const path = require('path');
 const fs = require('fs');
 
@@ -39,7 +39,7 @@ for (const file of commandFiles) {
 
 client.on(Events.InteractionCreate, interaction => {
 	if (!interaction.isChatInputCommand()) return;
-	console.log(interaction);
+	// console.log(interaction);
 });
 
 client.on(Events.InteractionCreate, async interaction => {
@@ -63,6 +63,8 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
 	}
 });
+
+
 
 // Log in to Discord with your client's token
 client.login(DISCORD_BOT_TOKEN);

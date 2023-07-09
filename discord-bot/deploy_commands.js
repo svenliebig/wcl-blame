@@ -6,7 +6,8 @@ require('dotenv').config({ path: '../.env/test'})
 
 const TOKEN = process.env.DISCORD_BOT_TOKEN;
 const CLIENT_ID = process.env.DISCORD_CLIENT_ID;
-const GUILD_ID = process.env.DISCORD_GUILD_ID;
+const GUILD_ID_RISE_AGAIN = process.env.DISCORD_GUILD_ID_RISE_AGAIN;
+const GUILD_ID_MAMA_IST_STOLZ = process.env.DISCORD_GUILD_ID_MAMA_IST_STOLZ;
 
 const commands = [];
 // Grab all the command files from the commands directory you created earlier
@@ -34,12 +35,19 @@ const rest = new REST().setToken(TOKEN);
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
-		const data = await rest.put(
-			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+		const rise_again = await rest.put(
+			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID_RISE_AGAIN),
 			{ body: commands },
 		);
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		console.log(`Successfully reloaded ${rise_again.length} application (/) commands on rise again.`);
+
+		const mama_ist_stolz = await rest.put(
+			Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID_MAMA_IST_STOLZ),
+			{ body: commands },
+		);
+
+		console.log(`Successfully reloaded ${mama_ist_stolz.length} application (/) commands in mama ist stolz.`);
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
 		console.error(error);
